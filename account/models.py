@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
-class CustomUserManager(AbstractBaseUser):
+from commerce import manage
+
+class Account(AbstractBaseUser):
     firstname=models.CharField(max_length=100)
     lastname=models.CharField(max_length=100)
     username=models.CharField(max_length=100,unique=True)
@@ -19,6 +21,8 @@ class CustomUserManager(AbstractBaseUser):
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['username','firstname','lastname']
 
+    objects = manage()
+
     def __str__(self):
         return self.email
     
@@ -27,9 +31,9 @@ class CustomUserManager(AbstractBaseUser):
     
     def module_persmissions(self, obj=None):
         return True
-    
-class Manager(CustomUserManager):
-    def create_superuser(self,firstname,lastname,username,email,password=None):
+# --------------------------------------------------------------------------------------------------
+class Manage(BaseUserManager):
+    def create_user(self,firstname,lastname,username,email,password=None):
         if not email:
             raise ValueError('User must have an email address'
             )
@@ -42,3 +46,23 @@ class Manager(CustomUserManager):
             lastname=lastname,
         )
        
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    # create superuser
+
+    def create_superuser(self,firstname,lastname,username,email,password=None):
+        user=self.create_user(
+            email=self.normalize_email(email),
+            username=username,
+            password=password,
+            firstname=firstname,
+            lastname=lastname,
+        )
+        user.is_admin=True
+        user.is_staff=True
+        user.is_active=True
+        user.is_superuser=True
+        user.save(using=self._db)
+        return user
