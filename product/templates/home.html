@@ -65,33 +65,34 @@
                         <p>Products are the result of innovative development and marketing efforts designed to meet consumer needs and drive economic and social impact</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class=" row-cols-1 row-cols-md-3 g-4" data-aos="fade-down">
-                    <div class="card shadow">
-                        <span  class="badges">
-                            <span class="badge text-bg-dark ">NEW</span>
-                            </span>
-                        <img src="assets/image/headphone.jpeg" alt="black watch"> 
-                        <div class="card-footer border-top border-gray-300 p-4">
-                            <a href="#" class="h5">One Plus Head Phone</a>
-                            <h3 class="h6 fw-light text-gray mt-2">Space red color</h3>
-                           
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <span class="h5 mb-0 text-gray">₹ 29,900.00</span> 
-                                <a class="btn btn-xs btn-tertiary" href="#">
-                                    <span class="fas fa-cart-plus me-2"></span> Add to cart
-                                     
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-            
-            
         </div>
+          
+  <div class="container py-5">
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+        <div class="card">
+          
+          <img src="{{ product.images.url }}"
+            class="card-img-top" alt="Laptop" />
+          <div class="card-body">
+
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="mb-0">{{product.pro_name}}</h5>
+              <h5 class="text-dark mb-0">${{product.price}}</h5>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <p class="text-muted mb-0">Available: <span class="fw-bold">6</span></p>
+              <div class="ms-auto text-warning">
+             <a href="https://example.com" class="btn btn-outline-success">Add To Cart</a>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+{%endfor%}
+        
     </section>
 
     <section id="counter" class="section-padding">
