@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from product.models import Category     # ✅ Assuming app name is `product`
+from product.models import Category    
 from mystore.models import Product
 from django.shortcuts import get_object_or_404
 def home(request,category_slug=None):
