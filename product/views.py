@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from commerce.product.models import Category
+from product.models import Category     # ✅ Assuming app name is `product`
 from mystore.models import Product
 from django.shortcuts import get_object_or_404
 def home(request,category_slug=None):
@@ -9,9 +9,14 @@ def home(request,category_slug=None):
 
 
     if category_slug != None:
-        categories = get_object_or_404(Category,category_slug=slug)
-    products =Product.objects.all().filter(is_available=True)
-    product_count = products.count()
+        categories = get_object_or_404(Category, category_slug=category_slug)
+        products=Product.objects.filter(category=categories,is_available=True)
+        product_count = products.count()
+    else:
+
+
+        products =Product.objects.all().filter(is_available=True)
+        product_count = products.count()
     context ={
         'products':products,
         'product_count':product_count,
