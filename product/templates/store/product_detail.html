@@ -1,391 +1,171 @@
-{% extends 'base.html'%}
-{%load static%}
-{% block content%}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
 <style>
-    h3{
+    h3 {
         text-align: left;
-        font-display:small;
+        font-display: small;
     }
+
     .options {
-      display: flex;
-      gap: 5px;
-      
+        display: flex;
+        gap: 5px;
     }
 
     .button {
-      flex: 2;
-      padding: 10px 0;
-      border: 1px solid #ccc;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      background-color: #fff;
-      transition: background-color 0.2s, border-color 0.2s;
+        flex: 2;
+        padding: 10px 0;
+        border: 1px solid #ccc;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: background-color 0.2s, border-color 0.2s;
     }
 
     .button:hover {
-      border-color: #888;
+        border-color: #888;
     }
 
     .active {
-      background-color: #aaa;
-      color: white;
+        background-color: #aaa;
+        color: white;
     }
 
     .add-to-cart {
-      display: block;
-      margin-top: 30px;
-      padding: 12px;
-      text-align: center;
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+        display: block;
+        margin-top: 30px;
+        padding: 12px;
+        text-align: center;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
     .add-to-cart:hover {
-      background-color: #0056b3;
+        background-color: #0056b3;
     }
-.carousel img {
-  width: 70px;
-  max-height: 70px;
-  border-radius: 50%;
-  margin-right: 1rem;
-  overflow: hidden;
-}
-.carousel-inner {
-  padding: 1em;
-}
 
-@media screen and (min-width: 576px) {
-  .carousel-inner {
-    display: flex;
-    width: 90%;
-    margin-inline: auto;
-    padding: 1em 0;
-    overflow: hidden;
-  }
-  .carousel-item {
-    display: block;
-    margin-right: 0;
-    flex: 0 0 calc(100% / 2);
-  }
-}
-@media screen and (min-width: 768px) {
-  .carousel-item {
-    display: block;
-    margin-right: 0;
-    flex: 0 0 calc(100% / 3);
-  }
-}
-.carousel .card {
-  margin: 0 0.5em;
-  border: 0;
-}
+    .carousel img {
+        width: 70px;
+        max-height: 70px;
+        border-radius: 50%;
+        margin-right: 1rem;
+        overflow: hidden;
+    }
 
-.carousel-control-prev,
-.carousel-control-next {
-  width: 3rem;
-  height: 3rem;
-  background-color: grey;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-}
+    .carousel-inner {
+        padding: 1em;
+    }
 
+    @media screen and (min-width: 576px) {
+        .carousel-inner {
+            display: flex;
+            width: 90%;
+            margin-inline: auto;
+            padding: 1em 0;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            display: block;
+            margin-right: 0;
+            flex: 0 0 calc(100% / 2);
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .carousel-item {
+            display: block;
+            margin-right: 0;
+            flex: 0 0 calc(100% / 3);
+        }
+    }
+
+    .carousel .card {
+        margin: 0 0.5em;
+        border: 0;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 3rem;
+        height: 3rem;
+        background-color: grey;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 </style>
-<script>
-const multipleItemCarousel = document.querySelector("#testimonialCarousel");
 
-if (window.matchMedia("(min-width:576px)").matches) {
-  const carousel = new bootstrap.Carousel(multipleItemCarousel, {
-    interval: false
-  });
-
-  var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-  var cardWidth = $(".carousel-item").width();
-
-  var scrollPosition = 0;
-
-  $(".carousel-control-next").on("click", function () {
-    if (scrollPosition < carouselWidth - cardWidth * 3) {
-      console.log("next");
-      scrollPosition = scrollPosition + cardWidth;
-      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 800);
-    }
-  });
-  $(".carousel-control-prev").on("click", function () {
-    if (scrollPosition > 0) {
-      scrollPosition = scrollPosition - cardWidth;
-      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 800);
-    }
-  });
-} else {
-  $(multipleItemCarousel).addClass("slide");
-}
-
-</script>
-<section class="section-padding">
+<section id="services" class="section-padding border-top">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
                     <div class="section-title">
                         <h1 class="display-4 fw-semibold">Products</h1>
                         <div class="line"></div>
-                    
+                        <p>Products are the result of innovative development and marketing efforts designed to meet consumer needs and drive economic and social impact</p>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row">
+        
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{{ singel_product.image.url }}" class="img-thumbnail" alt="{{ singel_product.pro_name }}">
                     </div>
                 </div>
             </div>
-<div class="container">
-<div class="row">
-  <div class="col-sm-4 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <img src="" class="img-thumbnail" alt="...">
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-7">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-                    <span class="h6 mb-0 text-gray">$815.0</span> 
-                    
-        </div>
-     <div class="container text-center">
-   <div class="section">
-    <h3>Choose Color</h3>
-    <div class="options">
-      <div class="button">Silver</div>
-      <div class="button">Gray</div>
-      <div class="button">Gold</div>
-      <div class="button">Black</div>
-    </div>
 
-    <h3>Select Size</h3>
-    <div class="options">
-      <div class="button">S</div>
-      <div class="button">M</div>
-      <div class="button">L</div>
-      <div class="button">XL</div>
-    </div>
+            <!-- Detail Column -->
+            <div class="col-sm-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ singel_product.pro_name }}</h5>
+                        <p class="card-text">{{ singel_product.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="h6 mb-0 text-gray">₹{{ singel_product.price }}</span>
+                        </div>
 
-   
-  </div>
+                        <!-- Color Options -->
+                        <h3 class="mt-4">Choose Color</h3>
+                        <div class="options">
+                            <div class="button">Silver</div>
+                            <div class="button">Gray</div>
+                            <div class="button">Gold</div>
+                            <div class="button">Black</div>
+                        </div>
 
-         <div class="d-flex justify-content-between align-items-center mt-3">
-                   
-                    <a class="btn btn-xs btn-tertiary" href="#">
-                        <span class="fas fa-cart-plus me-2"></span> Add to cart
-                    </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<section class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Customer Review</h1>
-                        <div class="line"></div>
-                    
+                        <!-- Size Options -->
+                        <h3 class="mt-4">Select Size</h3>
+                        <div class="options">
+                            <div class="button">S</div>
+                            <div class="button">M</div>
+                            <div class="button">L</div>
+                            <div class="button">XL</div>
+                        </div>
+
+                        <!-- Add to Cart -->
+                         {% if singel_product.stock == 0 %}
+                         <h5 style="color:red;">out of stock</h5>
+                         {%else%}
+                        <a class="add-to-cart mt-4" href="#">
+                            <i class="fas fa-cart-plus me-2"></i> Add to cart
+                        </a>
+                        {%endif%}
                     </div>
                 </div>
             </div>
-</section>
-<div class="container-fluid bg-body-tertiary py-3">
-  <div id="testimonialCarousel" class="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/square-headshot-1.png" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">Jane Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/square-headshot-2.png" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">June Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card shadow-sm rounded-3">
-          <div class="quotes display-2 text-body-tertiary">
-            <i class="bi bi-quote"></i>
-          </div>
-          <div class="card-body">
-            <p class="card-text">"Some quick example text to build on the card title and make up the
-              bulk of
-              the card's content."</p>
-            <div class="d-flex align-items-center pt-2">
-              <img src="https://codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" alt="bootstrap testimonial carousel slider 2">
-              <div>
-                <h5 class="card-title fw-bold">John Doe</h5>
-                <span class="text-secondary">CEO, Example Company</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-</div>
+</section>
 
-{% endblock%}
+
+{% endblock %}
