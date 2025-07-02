@@ -156,10 +156,12 @@
                          {% if singel_product.stock == 0 %}
                          <h5 style="color:red;">out of stock</h5>
                          {%else%}
-                        <a class="add-to-cart mt-4" href="#">
+                        <a class="add-to-cart mt-4" href="{% url 'add_cart' singel_product.id %}">
                             <i class="fas fa-cart-plus me-2"></i> Add to cart
                         </a>
                         {%endif%}
+                      
+
                     </div>
                 </div>
             </div>
