@@ -152,15 +152,13 @@
                             <div class="button">XL</div>
                         </div>
 
-                        <!-- Add to Cart -->
-                         {% if singel_product.stock == 0 %}
-                         <h5 style="color:red;">out of stock</h5>
-                         {%else%}
-                        <a class="add-to-cart mt-4" href="{% url 'add_cart' singel_product.id %}">
-                            <i class="fas fa-cart-plus me-2"></i> Add to cart
-                        </a>
-                        {%endif%}
-                      
+                        {% if single_product.stock > 0 %}
+  <a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary">Add to Cart</a>
+{% else %}
+  <p class="text-danger">Out of Stock</p>
+{% endif %}
+
+                                        
 
                     </div>
                 </div>
