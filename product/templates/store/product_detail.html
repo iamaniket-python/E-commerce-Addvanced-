@@ -152,11 +152,11 @@
                             <div class="button">XL</div>
                         </div>
 
-                        {% if single_product.stock > 0 %}
-  <a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary">Add to Cart</a>
-{% else %}
-  <p class="text-danger">Out of Stock</p>
-{% endif %}
+                         {% if single_product.stock > 0 %}
+                        <a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary">Add to Cart</a>
+                        {% else %}
+                        <p class="text-danger">Out of Stock</p>
+                        {% endif %}
 
                                         
 
